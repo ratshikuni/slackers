@@ -8,35 +8,80 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <!-- Link to JavaScript -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .gallery-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .gallery-item p {
+            margin-top: 10px;
+            color: #343a40;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
 
     <main>
         <h2>Event Gallery</h2>
-        
+
         <div class="gallery-container">
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 1">
-                <p>Description of Event 1</p>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 2">
-                <p>Description of Event 2</p>
+                <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="Wits Tour 2024">
+                <p>Wits Tour 2024: An exciting educational tour to the University of the Witwatersrand, where students explored the campus and gained insights into university life.</p>
             </div>
 
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 3">
-                <p>Description of Event 3</p>
+                <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="First Group of HA-Sci Learners">
+                <p>The First Group of HA-Sci Learners: The inaugural group of HA-Sci learners gathered at a tutor's home in Ratanda, as the school was unavailable for their use.</p>
             </div>
 
             <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 4">
-                <p>Description of Event 4</p>
+                <img src="{{ url_for('static', filename='images/3.jpeg') }}" alt="Good Luck Session for Preliminary Exams">
+                <p>Good Luck Session for Preliminary Exams: A motivational session held for the 2024 matriculants to wish them good luck and provide encouragement before their preliminary exams.</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/4.jpeg') }}" alt="Summer School 2024 Induction Ceremony">
+                <p>Summer School 2024 Induction Ceremony: The induction ceremony for the 2024 matriculants, marking the beginning of their summer school program.</p>
             </div>
         </div>
-        
+
     </main>
 
     <footer>

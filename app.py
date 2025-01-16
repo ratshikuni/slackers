@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -14,6 +15,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
 # User Model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,8 +32,6 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     role = SelectField('Role', choices=[('student', 'Student'), ('teacher', 'Teacher')], validators=[DataRequired()])
     submit = SubmitField('Sign Up')
-
-
 
     def validate_email(self, email):
         if User.query.filter_by(email=email.data).first():
@@ -53,7 +55,7 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -64,7 +66,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -72,7 +73,7 @@ def login():
         username = form.username.data
         password = form.password.data
         # Add your login processing logic here
-        return redirect(url_for('gallery'))
+        return redirect(url_for('gallery_page'))
     return render_template('login.html', form=form)
 
 @app.route('/logout')
@@ -82,21 +83,25 @@ def logout():
     # flash('You have been logged out.', 'info')
     return redirect(url_for('index'))
 
-
 @app.route('/gallery')
-def gallery():
+def gallery_page():
     return render_template('gallery.html')  # Gallery page
 
 @app.route('/subject')
 def subject():
     return render_template('subject.html')  # Subject page
 
-
 @app.route('/live_lesson')
 def live_lesson():
-    # Your logic for the live lesson page
-    return render_template('live_lesson.html')  # Render the live lesson page template
+    try:
+        return render_template('live_lesson.html')  # Render the live lesson page template
+    except Exception as e:
+        app.logger.error(f"Error in live_lesson route: {e}")
+        return "An internal error occurred.", 500
 
+@app.route('/recorded-lesson')
+def recorded_lesson():
+    return render_template('recorded_lesson.html')  # Recorded lesson page
 
 # Run the Flask app
 if __name__ == '__main__':

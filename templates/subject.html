@@ -3,17 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - HASci</title>
+    <title>Select Subject - HA-Sci</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color:#f8f9fa;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .grid-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .grid-item a {
+            text-decoration: none;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .grid-item a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
     <h1>Select a Subject</h1>
-    <ul>
-        <li><a href="{{ url_for('live_lesson') }}">Physics</a></li>
-        <li><a href="{{ url_for('live_lesson') }}">Mathematics</a></li>
-        <li><a href="{{ url_for('live_lesson') }}">Chemistry</a></li>
-    </ul>
+    <div class="grid-container">
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Accounting</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Afrikaans First Additional Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Management Practices</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Business Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Computer Applications Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Consumer Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dance Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Design</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dramatic Arts</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Economics</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Engineering Graphics and Design</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">English Home Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Geography</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">History</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Hospitality Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Information Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">IsiZulu Home Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Orientation</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Mathematics</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Music</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Physical Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Tourism</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Visual Arts</a></div>
+    </div>
 </body>
 </html>
+
 

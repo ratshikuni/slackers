@@ -5,15 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recorded Lessons</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .grid-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .grid-item a {
+            text-decoration: none;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .grid-item a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>Recorded Lessons</h1>
-    <ul>
-        <li><a href="{{ url_for('static', filename='uploads/physics-lesson.mp4') }}">Physics Lesson 1</a></li>
-        <li><a href="{{ url_for('static', filename='uploads/math-lesson.mp4') }}">Mathematics Lesson 1</a></li>
-        <li><a href="{{ url_for('static', filename='uploads/chemistry-lesson.mp4') }}">Chemistry Lesson 1</a></li>
-    </ul>
+    <main>
+        <h1>Recorded Lessons</h1>
+        <div class="grid-container">
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/accounting-lesson.mp4') }}">Accounting Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/afrikaans-lesson.mp4') }}">Afrikaans First Additional Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/agricultural-management-lesson.mp4') }}">Agricultural Management Practices Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/agricultural-sciences-lesson.mp4') }}">Agricultural Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/agricultural-technology-lesson.mp4') }}">Agricultural Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/business-studies-lesson.mp4') }}">Business Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/computer-applications-lesson.mp4') }}">Computer Applications Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/consumer-studies-lesson.mp4') }}">Consumer Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/dance-studies-lesson.mp4') }}">Dance Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/design-lesson.mp4') }}">Design Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/dramatic-arts-lesson.mp4') }}">Dramatic Arts Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/economics-lesson.mp4') }}">Economics Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/engineering-graphics-lesson.mp4') }}">Engineering Graphics and Design Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/english-home-language-lesson.mp4') }}">English Home Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/geography-lesson.mp4') }}">Geography Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/history-lesson.mp4') }}">History Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/hospitality-studies-lesson.mp4') }}">Hospitality Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/information-technology-lesson.mp4') }}">Information Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/isizulu-home-language-lesson.mp4') }}">IsiZulu Home Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/life-orientation-lesson.mp4') }}">Life Orientation Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/life-sciences-lesson.mp4') }}">Life Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/mathematics-lesson.mp4') }}">Mathematics Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/music-lesson.mp4') }}">Music Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/physical-sciences-lesson.mp4') }}">Physical Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/tourism-lesson.mp4') }}">Tourism Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="{{ url_for('static', filename='uploads/visual-arts-lesson.mp4') }}">Visual Arts Lesson</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
-

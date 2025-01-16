@@ -5,19 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Lessons</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .grid-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .grid-item a {
+            text-decoration: none;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .grid-item a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-
     <main>
         <h2>Join a Live Lesson</h2>
-        <ul>
-            <li><a href="https://teams.microsoft.com" target="_blank">Join Physics Lesson</a></li>
-            <li><a href="https://teams.microsoft.com" target="_blank">Join Mathematics Lesson</a></li>
-            <li><a href="https://teams.microsoft.com" target="_blank">Join Chemistry Lesson</a></li>
-        </ul>
+        <div class="grid-container">
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Accounting Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Afrikaans First Additional Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Agricultural Management Practices Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Agricultural Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Agricultural Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Business Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Computer Applications Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Consumer Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Dance Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Design Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Dramatic Arts Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Economics Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Engineering Graphics and Design Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join English Home Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Geography Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join History Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Hospitality Studies Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Information Technology Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join IsiZulu Home Language Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Life Orientation Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Life Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Mathematics Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Music Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Physical Sciences Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Tourism Lesson</a>
+            </div>
+            <div class="grid-item">
+                <a href="https://teams.microsoft.com" target="_blank">Join Visual Arts Lesson</a>
+            </div>
+        </div>
     </main>
-
     <footer>
         <p>&copy; 2025 HASci</p>
     </footer>
