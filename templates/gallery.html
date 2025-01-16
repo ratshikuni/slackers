@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <main>
+        <h2>Event Gallery</h2>
+        
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 1">
+                <p>Description of Event 1</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 2">
+                <p>Description of Event 2</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 3">
+                <p>Description of Event 3</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="Event 4">
+                <p>Description of Event 4</p>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HASci</p>
+    </footer>
+</body>
+</html>

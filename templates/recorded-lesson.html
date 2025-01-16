@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorded Lessons</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Recorded Lessons</h1>
+    <ul>
+        <li><a href="{{ url_for('static', filename='uploads/physics-lesson.mp4') }}">Physics Lesson 1</a></li>
+        <li><a href="{{ url_for('static', filename='uploads/math-lesson.mp4') }}">Mathematics Lesson 1</a></li>
+        <li><a href="{{ url_for('static', filename='uploads/chemistry-lesson.mp4') }}">Chemistry Lesson 1</a></li>
+    </ul>
+</body>
+</html>
+
