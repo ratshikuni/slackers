@@ -12,6 +12,8 @@
       <!-- Always visible links -->
       <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
       <li><a href="{{ url_for('subject') }}">Subjects</a></li>
+      <li><a href="{{ url_for('live_lesson') }}">Live Lesson</a></li>
+      <li><a href="{{ url_for('recorded_lesson') }}">Recorded Lesson</a></li>
 
       <!-- Logout link should always be last -->
       {% if session.get('is_logged_in', False) %}
