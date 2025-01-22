@@ -1,14 +1,37 @@
 <!-- templates/navbar.html -->
+<!-- <header>
+  <h1>HASci</h1>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+      <li><a href="{{ url_for('login') }}">Sign In</a></li>
+
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('subject') }}">Subjects</a></li>
+
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+  </nav>
+</header> -->
 <header>
-    <h1>HASci</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('register') }}">Sign Up</a></li>
-            <li><a href="{{ url_for('login') }}">Sign In</a></li>
-            <li><a href="{{ url_for('gallery_page') }}">Gallery</a></li>
-            <li><a href="{{ url_for('live_lesson') }}">Live Lesson</a></li>
-            <li><a href="{{ url_for('recorded_lesson') }}">Recorded Lesson</a></li>
-            <li><a href="{{ url_for('subject') }}">Subject</a></li>
-        </ul>
-    </nav>
+  <h1>Title</h1>
+  <nav>
+    <ul>
+      <!-- Conditional links for authentication -->
+      {% if not (session.get('is_logged_in', False)) %}
+        <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+        <li><a href="{{ url_for('login') }}">Sign In</a></li>
+      {% endif %}
+
+      <!-- Always visible links -->
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('subject') }}">Subjects</a></li>
+
+      <!-- Logout link should always be last -->
+      {% if session.get('is_logged_in', False) %}
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </nav>
 </header>
+
