@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <!-- Link to CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <!-- Link to JavaScript -->
+
+    <script
+      src="{{ url_for('static', filename='js/scripts.js') }}"
+      defer
+    ></script>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+
+    <main>
+      <h1>Home</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% if name %}
+      <div>
+        <h2>Welcome {{ name }}</h2>
+      </div>
+      {% else %}
+      <div>
+        <h2>Welcome Guest</h2>
+      </div>
+      {% endif %}
+    </main>
+
+    <footer>
+      <p>&copy; 2025 HASci</p>
+    </footer>
+  </body>
+</html>
