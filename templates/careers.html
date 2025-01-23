@@ -1,0 +1,31 @@
+<!-- templates/careers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - HASci</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <main>
+        <h2>Join Our Team</h2>
+        <div class="career-options">
+            <a href="{{ url_for('management_vacancies') }}">
+                <img src="{{ url_for('static', filename='images/Management.jpeg') }}" alt="Management">
+                <p>Join our management team and help shape the future of education.</p>
+            </a>
+            <a href="{{ url_for('tutoring_vacancies') }}">
+                <img src="{{ url_for('static', filename='images/Tutoring.jpeg') }}" alt="Tutoring">
+                <p>Join our tutoring team, and help learners both online and in person across the whole of South Africa.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HASci</p>
+    </footer>
+</body>
+</html>

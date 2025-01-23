@@ -61,6 +61,14 @@ def subject():
         return render_template('subject.html')  
     return redirect(url_for('login'))
 
+@app.route('/careers')
+def careers():
+    print(session)
+
+    if session.get("is_logged_in", False):
+        return render_template('careers.html')  
+    return redirect(url_for('login'))
+
 @app.route('/live_lesson')
 def live_lesson():
     if session.get("is_logged_in", False):

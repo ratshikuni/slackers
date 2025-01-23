@@ -14,6 +14,7 @@
       <li><a href="{{ url_for('subject') }}">Subjects</a></li>
       <li><a href="{{ url_for('live_lesson') }}">Live Lesson</a></li>
       <li><a href="{{ url_for('recorded_lesson') }}">Recorded Lesson</a></li>
+      <li><a href="{{ url_for('careers') }}">Careers</a></li> <!-- New Careers tab -->
 
       <!-- Logout link should always be last -->
       {% if session.get('is_logged_in', False) %}
@@ -22,4 +23,5 @@
     </ul>
   </nav>
 </header>
+
 

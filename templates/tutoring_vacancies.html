@@ -1,0 +1,53 @@
+<!-- templates/tutoring_vacancies.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoring Vacancies - HASci</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <main>
+        <h2>Tutoring Vacancies</h2>
+        <div class="form-container">
+            <h3>Apply for Tutoring Position</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.name.label }}
+                    {{ form.name(size=20, class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(size=20, class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.phone.label }}
+                    {{ form.phone(size=20, class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.matric_certificate.label }}
+                    {{ form.matric_certificate(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.id_document.label }}
+                    {{ form.id_document(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    <label for="agree">
+                        <input type="checkbox" id="agree" name="agree" required> I agree to disclose personal information
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Proceed</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HASci</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- templates/management_vacancies.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Vacancies - HASci</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <main>
+        <h2>Management Vacancies</h2>
+        <div class="vacancy-options">
+            <a href="{{ url_for('apply_management', role='Marketing') }}">Marketing</a>
+            <a href="{{ url_for('apply_management', role='Administration') }}">Administration</a>
+            <a href="{{ url_for('apply_management', role='IT') }}">IT</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HASci</p>
+    </footer>
+</body>
+</html>
+\
