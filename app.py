@@ -62,7 +62,13 @@ def subject():
 @app.route('/live_lesson')
 def live_lesson():
     if session.get("is_logged_in", False):
-        return render_template('live_lesson.html')  
+        return render_template('live-lesson.html')  
+    return redirect(url_for("login"))
+
+@app.route('/recorded_lesson')
+def recorded_lesson():
+    if session.get("is_logged_in", False):
+        return render_template('recorded-lesson.html')  
     return redirect(url_for("login"))
 
 @app.route('/logout')
@@ -159,9 +165,7 @@ def reset_password():
         return render_template("reset_password.html") 
 
 
-@app.route('/recorded-lesson')
-def recorded_lesson():
-    return render_template('recorded_lesson.html')  # Recorded lesson page
+
 
 # Run the Flask app
 if __name__ == '__main__':
