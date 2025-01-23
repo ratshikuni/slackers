@@ -2,7 +2,7 @@ import logging
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, TutorApplicationForm, ManagementApplicationForm
 from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
 import firebase_admin
@@ -67,6 +67,40 @@ def careers():
 
     if session.get("is_logged_in", False):
         return render_template('careers.html')  
+    return redirect(url_for('login'))
+
+@app.route('/management_vacancies')
+def management_vacancies():
+    print(session)
+
+    if session.get("is_logged_in", False):
+        return render_template('management_vacancies.html')  
+    return redirect(url_for('login'))
+
+@app.route('/tutoring_vacancies', methods=['GET', 'POST'])
+def tutoring_vacancies():
+    form = TutorApplicationForm()  # Create an instance of the form
+    if session.get("is_logged_in", False):
+        if form.validate_on_submit():
+            # Handle form submission
+            flash('Application submitted successfully!', 'success')
+            return redirect('/success')
+        return render_template('tutoring_vacancies.html', form=form) 
+    return redirect(url_for('login'))
+
+
+@app.route('/apply_management', methods=['GET', 'POST'])
+def apply_management():
+    role = request.args.get('role', '')  
+    print(role)
+
+    form = ManagementApplicationForm()  # Create an instance of the form
+    if session.get("is_logged_in", False):
+        if form.validate_on_submit():
+            # Handle form submission
+            flash('Application submitted successfully!', 'success')
+            return redirect('/success')
+        return render_template('apply_management.html', form=form ,role=role) 
     return redirect(url_for('login'))
 
 @app.route('/live_lesson')

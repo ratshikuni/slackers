@@ -13,16 +13,23 @@
     <main>
         <h2>Join Our Team</h2>
         <div class="career-options">
-            <a href="{{ url_for('management_vacancies') }}">
-                <img src="{{ url_for('static', filename='images/Management.jpeg') }}" alt="Management">
-                <p>Join our management team and help shape the future of education.</p>
-            </a>
-            <a href="{{ url_for('tutoring_vacancies') }}">
-                <img src="{{ url_for('static', filename='images/Tutoring.jpeg') }}" alt="Tutoring">
-                <p>Join our tutoring team, and help learners both online and in person across the whole of South Africa.</p>
-            </a>
+            <div class="card">
+                <a href="{{ url_for('management_vacancies') }}">
+                    <img src="{{ url_for('static', filename='images/Management.jpeg') }}" alt="Management">
+                    <h3>Management</h3>
+                    <p>Join our management team and help shape the future of education.</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('tutoring_vacancies') }}">
+                    <img src="{{ url_for('static', filename='images/Tutoring.jpeg') }}" alt="Tutoring">
+                    <h3>Tutoring</h3>
+                    <p>Join our tutoring team, and help learners both online and in person across the whole of South Africa.</p>
+                </a>
+            </div>
         </div>
     </main>
+    >
 
     <footer>
         <p>&copy; 2025 HASci</p>
