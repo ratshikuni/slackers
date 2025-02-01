@@ -6,6 +6,10 @@
     <title>Gallery</title>
     <!-- Link to CSS -->
     <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
@@ -21,18 +25,13 @@
 
     <main>
       <h1>Home</h1>
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %} {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">{{ message }}</div>
-      {% endfor %} {% endif %} {% endwith %} {% if name %}
-      <div>
-        <h2>Welcome {{ name }}</h2>
-      </div>
-      {% else %}
-      <div>
-        <h2>Welcome Guest</h2>
-      </div>
+
+      <h2>Welcome {{session['name']}}</h2>
+
+      {% if message %}
+      <p style="color: green">{{ message }}</p>
       {% endif %}
+      <!-- <p>You are logged in!</p> -->
     </main>
 
     <footer>

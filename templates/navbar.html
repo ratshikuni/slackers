@@ -10,6 +10,9 @@
       {% endif %}
 
       <!-- Always visible links -->
+      {% if session.get('is_logged_in', False) %}
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      {% endif %}
       <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
       <li><a href="{{ url_for('subject') }}">Subjects</a></li>
       <li><a href="{{ url_for('live_lesson') }}">Live Lessons</a></li>

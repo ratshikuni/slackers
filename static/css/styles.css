@@ -211,3 +211,30 @@ footer {
 .vacancy-options a:hover {
     background-color: #e0e0e0;
 }
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+.grid-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.grid-item a {
+    text-decoration: none;
+    color: #343a40;
+    font-weight: bold;
+}
+.grid-item a:hover {
+    color: #007bff;
+}
