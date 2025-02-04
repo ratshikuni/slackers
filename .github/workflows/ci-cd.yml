@@ -27,15 +27,17 @@ jobs:
       - name: Authenticate with Google Cloud
         run: |
           echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > key.json || echo "${{ secrets.GCP_CREDENTIALS }}" | base64 --decode > key.json
-          
           if [ -s key.json ]; then
             echo "key.json file created successfully."
           else
             echo "key.json is empty."
             exit 1
           fi
-        
           gcloud auth activate-service-account --key-file=key.json
+
+      - name: Configure Docker to use Google Cloud
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Build Docker image
         run: |
