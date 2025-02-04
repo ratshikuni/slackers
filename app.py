@@ -1,3 +1,4 @@
+import base64
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -16,16 +17,19 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
-cred_path = os.getenv("GCP_CREDENTIALS")
-
-if not cred_path:
+gcp_credentials_base64 = os.getenv('GCP_CREDENTIALS')
+if not gcp_credentials_base64:
     raise ValueError("GCP_CREDENTIALS environment variable is not set.")
 
-os.environ["GCP_CREDENTIALS"] = cred_path
+
+cred_path = "/tmp/key.json"
+with open(cred_path, "wb") as key_file:
+    key_file.write(base64.b64decode(gcp_credentials_base64))
+
 cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 
-
+os.remove(cred_path)
 
 config = {
   "apiKey": os.getenv("FIREBASE_API_KEY"),

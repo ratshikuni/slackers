@@ -28,13 +28,12 @@ jobs:
         run: |
           echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > key.json
           if [ -s key.json ]; then
-            echo "Service account key file created."
+            echo "key.json file created successfully."
           else
-            echo "Failed to create the key file."
+            echo "key.json is empty."
             exit 1
           fi
           gcloud auth activate-service-account --key-file=key.json
-
 
       - name: Configure Docker to use Google Cloud
         run: |
