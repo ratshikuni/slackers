@@ -16,11 +16,15 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
-cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = cred_path
+cred_path = os.getenv("GCP_CREDENTIALS")
 
+if not cred_path:
+    raise ValueError("GCP_CREDENTIALS environment variable is not set.")
+
+os.environ["GCP_CREDENTIALS"] = cred_path
 cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
+
 
 
 config = {
