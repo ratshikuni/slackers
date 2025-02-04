@@ -74,7 +74,7 @@ def subject():
 
 @app.route('/careers')
 def careers():
-    print(session)
+    # print(session)
 
     if session.get("is_logged_in", False):
         return render_template('careers.html')  
@@ -278,7 +278,7 @@ def login():
             session["is_logged_in"] = True
             session['uid'] = user['localId']
             session["email"] = email
-            print(session['uid'])
+            # print(session['uid'])
 
             # Retrieve the document from Firestore
             doc_ref = db.collection('users').document(session['uid'])
@@ -287,7 +287,7 @@ def login():
             # Check if the document exists and extract user data
             if doc_snapshot.exists:
                 doc_data = doc_snapshot.to_dict()
-                print("Document Data:", doc_data)  # Print all fields in the document
+                # print("Document Data:", doc_data)  # Print all fields in the document
                 
                 # Store additional data in session
                 session["name"] = doc_data.get("name")
@@ -328,5 +328,5 @@ def logout():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=8080, debug=False)
 
