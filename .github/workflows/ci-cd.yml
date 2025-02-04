@@ -36,20 +36,19 @@ jobs:
           fi
         
           gcloud auth activate-service-account --key-file=key.json
-          
 
       - name: Build Docker image
         run: |
-          DOCKER_BUILDKIT=1 docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app .
+          DOCKER_BUILDKIT=1 docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app:latest .
 
       - name: Push Docker image to Google Container Registry
         run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app:latest
 
       - name: Deploy to Google Cloud Run
         run: |
           gcloud run deploy flask-app \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/flask-app:latest \
           --platform managed \
           --region us-central1 \
           --allow-unauthenticated \
