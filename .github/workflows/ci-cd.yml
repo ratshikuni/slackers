@@ -22,10 +22,18 @@ jobs:
       - name: Authenticate with Google Cloud
         run: |
           echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
-
-          if [ -f key.json ]; then echo "key.json file exists"; else echo "key.json file does not exist"; fi
-          
           gcloud auth activate-service-account --key-file=key.json
+
+      - name: Check GCP Credentials format
+        run: |
+          # Check the size of key.json to ensure it is not empty
+          echo "Checking if key.json is correctly created..."
+          if [ -s key.json ]; then
+            echo "key.json file created successfully"
+          else
+            echo "key.json is empty"
+            exit 1
+          fi
 
       - name: Build Docker image
         run: |
