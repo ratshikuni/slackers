@@ -21,12 +21,12 @@ jobs:
 
       - name: Authenticate with Google Cloud
         run: |
-          echo "${{ secrets.GCP_CREDENTIALS }}" > key.
-          
+          printf "%s" "${{ secrets.GCP_CREDENTIALS }}" > key.json
+
           if [ -s key.json ]; then
-          echo "key.json file created successfully"
+            echo "key.json file created successfully."
           else
-            echo "key.json is empty"
+            echo "key.json is empty."
             exit 1
           fi
 
