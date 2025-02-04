@@ -16,8 +16,9 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
-cred_path = "key.json"
+cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = cred_path
+
 cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 
