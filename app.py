@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from forms import RegistrationForm, LoginForm, TutorApplicationForm, ManagementApplicationForm
+from forms import TutorApplicationForm, ManagementApplicationForm
 from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
 import firebase_admin
@@ -327,4 +327,5 @@ def logout():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)
+
