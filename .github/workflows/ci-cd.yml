@@ -27,14 +27,14 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE_NAME=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/my-repo/flask-app:$GITHUB_SHA
+          IMAGE_NAME=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/flask-app/flask-app:$GITHUB_SHA
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
       - name: Deploy to Google Cloud Run
         run: |
           gcloud run deploy flask-app \
-            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/my-repo/flask-app:$GITHUB_SHA \
+            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/flask-app/flask-app:$GITHUB_SHA \
             --region us-central1 \
             --platform managed \
             --allow-unauthenticated \
