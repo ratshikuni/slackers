@@ -19,11 +19,13 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
-          credentials: ${{ secrets.GCP_CREDENTIALS }}  # Correct input for credentials
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}  # Use service account key for authentication
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Authenticate Docker with Artifact Registry
-        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+          gcloud auth list  # Confirm authentication is successful
 
       - name: Build and Push Docker Image
         run: |
