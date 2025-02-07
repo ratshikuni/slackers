@@ -28,7 +28,6 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-          token_format: 'access_token'
 
       # Docker authentication using the auth token
       - name: 'Docker Auth'
