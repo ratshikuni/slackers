@@ -17,12 +17,14 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
-if os.getenv('K_SERVICE'):  # Check if the K_SERVICE environment variable is present
-    # Running on Cloud Run, use Application Default Credentials (ADC)
-    cred = credentials.ApplicationDefault()
-else:
-    # Running locally, use a specific credentials file (e.g., key.json)
-    cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
+# if os.getenv('K_SERVICE'):  # Check if the K_SERVICE environment variable is present
+#     # Running on Cloud Run, use Application Default Credentials (ADC)
+#     cred = credentials.ApplicationDefault()
+# else:
+#     # Running locally, use a specific credentials file (e.g., key.json)
+#     cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
+
+cred = credentials.ApplicationDefault()
 
 # Initialize Firebase Admin SDK
 initialize_app(cred)
