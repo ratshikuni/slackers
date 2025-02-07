@@ -35,10 +35,9 @@ jobs:
         with:
           username: 'oauth2accesstoken'
           password: '${{ steps.auth.outputs.auth_token }}'
-          registry: '${{ env.REGION }}-docker.pkg.dev/flask-app/flask-app'
+          registry: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/flask-app'
 
       # Build and push the Docker image to Google Artifact Registry
-
       - name: 'Build and Push Docker Image'
         run: |-
           IMAGE_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/flask-app/${{ env.SERVICE }}:${{ github.sha }}"
