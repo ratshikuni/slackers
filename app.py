@@ -6,7 +6,7 @@ from forms import TutorApplicationForm, ManagementApplicationForm
 from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, initialize_app, firestore
 from datetime import datetime
 import os
 import pyrebase
@@ -17,19 +17,14 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  
 
-gcp_credentials_base64 = os.getenv('GCP_CREDENTIALS')
-if not gcp_credentials_base64:
-    raise ValueError("GCP_CREDENTIALS environment variable is not set.")
+# Automatically use the default credentials on Cloud Run
+if "GOOGLE_APPLICATION_CREDENTIALS" in os.environ:
+    cred = credentials.ApplicationDefault()
+else:
+    cred = credentials.Certificate("key.json")  # For local development
 
-
-cred_path = "/tmp/key.json"
-with open(cred_path, "wb") as key_file:
-    key_file.write(base64.b64decode(gcp_credentials_base64))
-
-cred = credentials.Certificate(cred_path)
-firebase_admin.initialize_app(cred)
-
-os.remove(cred_path)
+# Initialize Firebase Admin SDK
+initialize_app(cred)
 
 config = {
   "apiKey": os.getenv("FIREBASE_API_KEY"),
