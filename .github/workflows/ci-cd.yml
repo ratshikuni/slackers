@@ -33,9 +33,9 @@ jobs:
       - name: 'Docker Auth'
         uses: 'docker/login-action@v3'
         with:
-          username: 'oauth2accesstoken'
-          password: '${{ steps.auth.outputs.auth_token }}'
-          registry: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/flask-app'
+          username: _json_key
+          password: ${{ secrets.GCP_CREDENTIALS }}
+          registry: '${{ env.REGION }}-docker.pkg.dev'
 
       # Build and push the Docker image to Google Artifact Registry
       - name: 'Build and Push Docker Image'
