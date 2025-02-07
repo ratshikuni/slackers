@@ -19,17 +19,21 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}  # Use service account key for authentication
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}  # Fix: Use service account key
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
+      - name: Authenticate Service Account  
+        run: gcloud auth activate-service-account --key-file="${{ secrets.GCP_CREDENTIALS }}"
+
+      - name: Verify Authentication 
+        run: gcloud auth list
+
       - name: Authenticate Docker with Artifact Registry
-        run: |
-          gcloud auth configure-docker us-central1-docker.pkg.dev
-          gcloud auth list  # Confirm authentication is successful
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE_NAME=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/flask-app/flask-app:${GITHUB_REF_NAME}-${GITHUB_SHA}
+          IMAGE_NAME=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/flask-app/flask-app:${GITHUB_SHA}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
