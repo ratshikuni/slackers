@@ -3,86 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Lessons</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
-            margin: 0;
-            padding: 0;
-        }
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-            color: #007bff;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 1200px;
-        }
-        .grid-item {
-            background-color: #ffffff;
-            border: 1px solid #dee2e6;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .grid-item a {
-            text-decoration: none;
-            color: #343a40;
-            font-weight: bold;
-        }
-        .grid-item a:hover {
-            color: #007bff;
-        }
-    </style>
+    <title>Live Lessons | E-MpiloLearning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/grid.css') }}">
 </head>
 <body>
     {% include 'navbar.html' %}
     <main>
         <h2>Join a Live Lesson</h2>
-        <div class="grid-container">
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/88626872491?pwd=A3SbFwaSh1rDIbl3RIxHmLUPHb4jtC.1" target="_blank">Join Grade 10 Mathslit Lesson
-                    <span class="live-indicator">Live 🔴</span>
-                </a>
+        <div class="grid">
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/88626872491?pwd=A3SbFwaSh1rDIbl3RIxHmLUPHb4jtC.1" target="_blank" class="live-btn">Join Grade 10 MathsLit Lesson</a>
             </div>
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/85698563037?pwd=bYkob8RVsZzKsqcr2lFrnKOJLxubXm.1" target="_blank">Join Grade 11 Mathlit Lesson 
-                     <span class="live-indicator">Live 🔴</span>
-                </a>
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/85698563037?pwd=bYkob8RVsZzKsqcr2lFrnKOJLxubXm.1" target="_blank" class="live-btn">Join Grade 11 MathsLit Lesson</a>
             </div>
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/81329059694?pwd=hB1AfCnDVmWUywwhxJjgljcHXUCOzW.1" target="_blank">Join Grade 12 Mathlit Lesson
-                     <span class="live-indicator">Live 🔴</span>
-                </a>
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/81329059694?pwd=hB1AfCnDVmWUywwhxJjgljcHXUCOzW.1" target="_blank" class="live-btn">Join Grade 12 MathsLit Lesson</a>
             </div>
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/88021789786?pwd=lFjCMUa4E9xfpQ9C5Uo528mk4MMU8C.1" target="_blank">Join Grade 10 Maths Lesson
-                     <span class="live-indicator">Live 🔴</span>
-                </a>
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/88021789786?pwd=lFjCMUa4E9xfpQ9C5Uo528mk4MMU8C.1" target="_blank" class="live-btn">Join Grade 10 Maths Lesson</a>
             </div>
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/87475253072?pwd=YsaXL1h2Oa8UV0t0ra5BbgzRQtf6s3.1" target="_blank">Join Grade 11 Mathlit Lesson
-                     <span class="live-indicator">Live 🔴</span>
-                </a>
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/87475253072?pwd=YsaXL1h2Oa8UV0t0ra5BbgzRQtf6s3.1" target="_blank" class="live-btn">Join Grade 11 MathsLit Lesson</a>
             </div>
-            <div class="grid-item">
-                <a href="https://us05web.zoom.us/j/87435320313?pwd=3J2JbeinG2qvXDYHoO82WAwyIYKVNI.1" target="_blank">Join Grade 12 Mathlit Lesson
-                     <span class="live-indicator">Live 🔴</span>
-                </a>
+            <div class="card">
+                <a href="https://us05web.zoom.us/j/87435320313?pwd=3J2JbeinG2qvXDYHoO82WAwyIYKVNI.1" target="_blank" class="live-btn">Join Grade 12 MathsLit Lesson</a>
             </div>
         </div>
     </main>
     <footer>
-        <p>&copy; 2025 E-MpiloLearning</p>
+        &copy; 2025 E-MpiloLearning
     </footer>
 </body>
 </html>

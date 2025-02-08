@@ -1,58 +1,106 @@
 /* Base styles */
+:root {
+    --primary-color: #0078d4;
+    --primary-dark: #005a9e;
+    --background-light: #f4f4f9;
+    --text-color: #333;
+    --white: #ffffff;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f9; /* Light background color */
+    background-color: var(--background-light);
+    color: var(--text-color);
 }
 
 /* Header */
 header {
-    background-color: #0078d4; /* Microsoft Teams blue */
-    color: #ffffff; /* White text */
+    background-color: var(--primary-color);
+    color: var(--white);
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
 }
 
 nav a {
     text-decoration: none;
-    color: #ffffff; /* White color for nav links */
+    color: var(--white);
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
     text-decoration: underline;
+    color: var(--primary-dark);
 }
-
-/* Main content */
 main {
     padding: 2rem;
     text-align: center;
 }
 
-/* Link styles */
-ul li a {
+/* Mobile Menu */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-color);
+        padding: 1rem;
+    }
+    #menu-toggle:checked + .menu-icon + ul {
+        display: flex;
+    }
+}
+
+/* Buttons */
+ul li a, .vacancy-options a {
     text-decoration: none;
-    background-color: #0078d4;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     padding: 10px 15px;
     border-radius: 5px;
     display: inline-block;
@@ -60,181 +108,128 @@ ul li a {
     transition: background-color 0.3s ease;
 }
 
-ul li a:hover {
-    background-color: #005a9e;
+ul li a:hover, .vacancy-options a:hover {
+    background-color: var(--primary-dark);
 }
 
-/* Forms */
-.form-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-}
 
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-control {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Alerts */
-.alert {
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
-    font-weight: 500;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* Gallery */
-.gallery-grid {
+/* Base Styles for Grid */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    justify-items: center; /* Center items */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Makes sure the cards are responsive */
+    gap: 1rem; /* Adds spacing between cards */
+    padding: 1rem; /* Adds padding around the grid */
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
 }
 
-.gallery-item {
-    width: 100%;
-    max-width: 300px; /* Set a maximum size for images */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #fff;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    border-bottom: 4px solid #0078d4;
-}
-
-.gallery-item p {
-    padding: 1rem;
-    background-color: #fff;
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-    font-weight: 500;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-.career-options {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping to the next row */
-    gap: 2rem; /* Space between cards */
-    justify-content: center; /* Centers content */
-    margin-top: 2rem;
-    width: 100%; /* Full width of the parent container */
-    padding: 1rem; /* Adds spacing around the container */
-    box-sizing: border-box; /* Includes padding in width calculation */
-}
-
+/* Card Styles */
 .card {
-    flex: 1 1 calc(33.333% - 2rem); /* Each card takes one-third of the width, minus the gap */
-    max-width: calc(33.333% - 2rem); /* Limit maximum width for consistency */
-    text-align: center;
-    box-sizing: border-box; /* Includes padding and border in width */
-}
-
-.card a {
-    text-decoration: none;
-    color: #333;
-    display: block; /* Ensures the link spans the card */
-    width: 100%;
-}
-
-.card img {
-    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card h3 {
-    margin-top: 1rem;
-    font-size: 1.4rem;
-    font-weight: bold;
-}
-
-.card p {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-
-
-/* Vacancy options */
-.vacancy-options {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.vacancy-options a {
-    text-decoration: none;
-    color: #333;
-    background-color: #f4f4f9;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevents content from overflowing */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on cards */
+.card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Live Button Styling */
+.live-btn {
+    display: inline-block;
+    background-color: #0078d4;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
     transition: background-color 0.3s ease;
 }
 
-.vacancy-options a:hover {
-    background-color: #e0e0e0;
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+/* Career cards container */
+.career-cards-container {
+    display: flex;
+    justify-content: center;
     gap: 20px;
     padding: 20px;
-    margin: 20px auto;
-    max-width: 1200px;
+    flex-wrap: wrap; /* Makes it responsive */
 }
-.grid-item {
-    background-color: #ffffff;
-    border: 1px solid #dee2e6;
-    padding: 20px;
-    text-align: center;
+
+/* Specific career card styling */
+.career-card {
+    background-color: white;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.grid-item a {
+
+/* Hover effect on cards */
+.career-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Career-specific cards styling */
+.management-card {
+    border-color: #4CAF50; /* Green border for Management */
+}
+
+.tutoring-card {
+    border-color: #FF9800; /* Orange border for Tutoring */
+}
+
+.career-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.career-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.career-card p {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 15px 15px;
+}
+
+.career-card a {
     text-decoration: none;
-    color: #343a40;
-    font-weight: bold;
+    color: inherit;
 }
-.grid-item a:hover {
-    color: #007bff;
+
+
+
+/* Hover effect on live buttons */
+.live-btn:hover {
+    background-color: #005a9e;
+}
+
+/* Ensure the footer stays at the bottom */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
 }

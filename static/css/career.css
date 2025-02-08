@@ -1,0 +1,71 @@
+.career-cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping to next line if space is insufficient */
+    width: 100%;  /* Ensure container takes up full width */
+}
+
+.career-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    flex: 1 1 300px;  /* Allow cards to grow and shrink but start at 300px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.career-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Different border colors for different card types */
+.management-card {
+    border-color: #4CAF50; /* Green */
+}
+
+.tutoring-card {
+    border-color: #FF9800; /* Orange */
+}
+
+.career-card img {
+    width: 100%;
+    height: auto;  /* Maintain aspect ratio */
+    object-fit: cover;  /* Cover the area without distortion */
+    border-bottom: 1px solid #ddd;
+}
+
+.career-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.career-card p {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 15px 15px;
+}
+
+.career-card a {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent */
+    display: block; /* Makes the whole card clickable */
+    height: 100%; /* Ensure the link covers the entire card */
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .career-card {
+        width: 100%; /* Make cards full width on smaller screens */
+        margin: 10px auto; /* Center the cards */
+    }
+
+    .career-card img {
+        height: auto;  /* Allow image to scale responsively */
+    }
+}

@@ -1,0 +1,40 @@
+/* forms.css */
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+@media (max-width: 400px) {
+    .form-container {
+        padding: 1rem;
+    }
+}
+
+/* Styling for error messages (if you use them) */
+.errors {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    color: red;
+    font-size: smaller;
+}

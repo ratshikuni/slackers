@@ -4,38 +4,106 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery</title>
-    <!-- Link to CSS -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/styles.css') }}"
-    />
-    <!-- Link to JavaScript -->
-
-    <script
-      src="{{ url_for('static', filename='js/scripts.js') }}"
-      defer
-    ></script>
+    <!-- Linking stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
   </head>
   <body>
+    <!-- Navbar Section -->
     {% include 'navbar.html' %}
 
+    <!-- Main Content -->
     <main>
-      <h1>Home</h1>
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1>Welcome to E-MpiloLearning</h1>
+        <div class="hero-content">
+          <p>Empowering your learning journey with interactive content and resources.</p>
+          {% if session['name'] %}
+            <p>Welcome back, {{ session['name'] }}!</p>
+          {% else %}
+            <p>Join us to start learning!</p>
+          {% endif %}
+          <a href="{{ url_for('gallery') }}" class="cta-button">Explore the Gallery</a>
+        </div>
+      </section>
 
-      <h2>Welcome {{session['name']}}</h2>
+      <!-- Features Section -->
+      <section class="features">
+        <h2>Explore Our Features</h2>
+        <div class="feature-cards">
+          <div class="feature-card">
+            <img src="/path/to/icon1.png" alt="Courses" />
+            <h3>Courses</h3>
+            <p>Learn new skills and concepts at your own pace.</p>
+            <a href="{{ url_for('subject') }}">Explore Courses</a>
+          </div>
+          <div class="feature-card">
+            <img src="/path/to/icon2.png" alt="Live Lessons" />
+            <h3>Live Lessons</h3>
+            <p>Join live sessions with experienced instructors.</p>
+            <a href="{{ url_for('live_lesson') }}">Join Live Lessons</a>
+          </div>
+          <div class="feature-card">
+            <img src="/path/to/icon3.png" alt="Gallery" />
+            <h3>Gallery</h3>
+            <p>Browse our collection of educational resources.</p>
+            <a href="{{ url_for('gallery') }}">Visit Gallery</a>
+          </div>
+        </div>
+      </section>
 
-      {% if message %}
-      <p style="color: green">{{ message }}</p>
-      {% endif %}
-      <!-- <p>You are logged in!</p> -->
+      <!-- Testimonials Section -->
+      <section class="testimonials">
+        <h2>What Our Learners Say</h2>
+        <div class="testimonial-cards">
+          <div class="testimonial-card">
+            <p>"This platform helped me boost my knowledge and skills. Highly recommend!"</p>
+            <cite>- John Doe</cite>
+          </div>
+          <div class="testimonial-card">
+            <p>"Fantastic lessons and easy-to-follow content. A great experience."</p>
+            <cite>- Jane Smith</cite>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Stats Section -->
+      <!-- <section class="user-stats">
+        <h2>Your Progress</h2>
+        <div class="progress-bars">
+          <div class="progress-bar">
+            <h3>Course Completion</h3>
+            <progress value="70" max="100"></progress>
+            <p>70% completed</p>
+          </div>
+          <div class="progress-bar">
+            <h3>Live Sessions Attended</h3>
+            <progress value="50" max="100"></progress>
+            <p>50% attended</p>
+          </div>
+        </div>
+      </section> -->
     </main>
 
+    <!-- Footer Section -->
     <footer>
-      <p>&copy; 2025 E-MpiloLearning</p>
+      <div class="footer-content">
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <div>
+          <a href="https://facebook.com">Facebook</a> |
+          <a href="https://twitter.com">Twitter</a> |
+          <a href="https://instagram.com">Instagram</a>
+        </div>
+      </div>
+      <p>&copy; 2025 E-MpiloLearning. All Rights Reserved.</p>
     </footer>
   </body>
 </html>

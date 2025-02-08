@@ -1,0 +1,86 @@
+/* typography.css */
+
+/* Import Google Fonts (Modern Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap');
+
+/* General Body Font */
+body {
+    font-family: 'Inter', 'Roboto', 'Poppins', sans-serif; /* Modern fonts for better readability */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Subtle background color */
+    color: #333; /* Dark text for good contrast */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif; /* Choose 'Inter' for headings for a modern feel */
+    font-weight: 600; /* Adjust font weight as needed */
+}
+
+h1 {
+    font-size: 3rem; /* Larger for more emphasis */
+    margin-bottom: 1rem; /* Space below heading */
+}
+
+h2 {
+    font-size: 2.5rem; /* Slightly smaller than h1 */
+    margin-bottom: 0.8rem;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+/* Paragraphs */
+p {
+    font-family: 'Roboto', sans-serif; /* Modern font for paragraphs */
+    font-size: 1.1rem; /* Slightly larger font size for better readability */
+    line-height: 1.7; /* Increased line-height for improved readability */
+    margin-bottom: 1.2rem; /* Space between paragraphs */
+    color: #555; /* Slightly lighter text color for paragraphs */
+}
+
+/* Links */
+a {
+    color: #0078d4; /* Primary color - Adjust as needed */
+    text-decoration: none; /* Remove underlines by default */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+a:hover {
+    color: #005a9e; /* Darker primary color on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Lists */
+ul, ol {
+    list-style-type: disc; /* Bullet points for unordered lists */
+    padding-left: 1.5rem; /* Indentation for lists */
+    margin-bottom: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.8rem; /* Space between list items */
+}
+
+/* Blockquote */
+blockquote {
+    font-style: italic;
+    border-left: 4px solid #0078d4;
+    padding-left: 1rem;
+    margin-left: 0;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Code Elements */
+code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Example: Using Google Font (If you want to use a custom font) */
