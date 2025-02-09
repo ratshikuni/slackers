@@ -1,30 +1,80 @@
 <header>
   <nav class="navbar">
     <div class="logo">
-      <h1>E-MpiloLearning</h1>
+      <a href="{{ url_for('home') }}">
+        <h1>E-MpiloLearning</h1>
+      </a>
     </div>
-    
+
     <!-- Hamburger Menu for Mobile -->
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon" aria-label="Toggle Navigation">&#9776;</label>
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon" aria-label="Toggle Navigation"
+      >&#9776;</label
+    >
 
     <ul class="nav-links">
       {% if not session.get('is_logged_in', False) %}
-        <li><a href="{{ url_for('register') }}" class="{% if request.endpoint == 'register' %}active{% endif %}">Sign Up</a></li>
-        <li><a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}active{% endif %}">Sign In</a></li>
+      <li>
+        <a
+          href="{{ url_for('register') }}"
+          class="{% if request.endpoint == 'register' %}active{% endif %}"
+          >Sign Up</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('login') }}"
+          class="{% if request.endpoint == 'login' %}active{% endif %}"
+          >Sign In</a
+        >
+      </li>
+      {% endif %} {% if session.get('is_logged_in', False) %}
+      <li>
+        <a
+          href="{{ url_for('home') }}"
+          class="{% if request.endpoint == 'home' %}active{% endif %}"
+          >Home</a
+        >
+      </li>
       {% endif %}
+      <li>
+        <a
+          href="{{ url_for('gallery') }}"
+          class="{% if request.endpoint == 'gallery' %}active{% endif %}"
+          >Gallery</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('subject') }}"
+          class="{% if request.endpoint == 'subject' %}active{% endif %}"
+          >Subjects</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('live_lesson') }}"
+          class="{% if request.endpoint == 'live_lesson' %}active{% endif %}"
+          >Live Lessons</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('recorded_lesson') }}"
+          class="{% if request.endpoint == 'recorded_lesson' %}active{% endif %}"
+          >Recorded Lessons</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('careers') }}"
+          class="{% if request.endpoint == 'careers' %}active{% endif %}"
+          >Careers</a
+        >
+      </li>
 
       {% if session.get('is_logged_in', False) %}
-        <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
-      {% endif %}
-      <li><a href="{{ url_for('gallery') }}" class="{% if request.endpoint == 'gallery' %}active{% endif %}">Gallery</a></li>
-      <li><a href="{{ url_for('subject') }}" class="{% if request.endpoint == 'subject' %}active{% endif %}">Subjects</a></li>
-      <li><a href="{{ url_for('live_lesson') }}" class="{% if request.endpoint == 'live_lesson' %}active{% endif %}">Live Lessons</a></li>
-      <li><a href="{{ url_for('recorded_lesson') }}" class="{% if request.endpoint == 'recorded_lesson' %}active{% endif %}">Recorded Lessons</a></li>
-      <li><a href="{{ url_for('careers') }}" class="{% if request.endpoint == 'careers' %}active{% endif %}">Careers</a></li>
-
-      {% if session.get('is_logged_in', False) %}
-        <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
+      <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
       {% endif %}
     </ul>
   </nav>
