@@ -25,29 +25,48 @@ class ZoomClient:
             "client_id": self.client_id,
             "client_secret": self.client_secret
         }
-        response = requests.post("https://zoom.us/oauth/token", data=data)
-        return response.json()["access_token"]
+        try:
+            response = requests.post("https://zoom.us/oauth/token", data=data)
+            response.raise_for_status()  # Raise an error for non-200 responses
+            token_data = response.json()
+            return token_data.get("access_token", None)
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching access token: {e}")
+            return None
 
     def get_meetings(self):
+        if not self.access_token:
+            print("No access token available.")
+            return None
+        
         headers = {
             "Authorization": f"Bearer {self.access_token}"
         }
-        body = {
+        params = {"type": "upcoming"}
 
-            "type":"upcoming"
-        }
+        url = "https://api.zoom.us/v2/users/me/meetings"
 
-        url = f"https://api.zoom.us/v2/users/me/meetings"
+        try:
+            response = requests.get(url, headers=headers, params=params)
+            response.raise_for_status()  # Raise an error for HTTP errors
+            
+            data = response.json()
+            
+            if "meetings" in data:
+                return data["meetings"]
+            else:
+                print("Unexpected response format:", data)
+                return None
 
-        response = requests.get(url, headers=headers, params=body).json()
-        pretty_json = json.dumps(response, indent=4)
-        # print("#"*200)
-        # print(pretty_json)  
-        # print("#"*200)
-        # print("\n")
+        except requests.exceptions.HTTPError as e:
+            print(f"HTTP Error: {e}")
+        except requests.exceptions.RequestException as e:
+            print(f"Request Error: {e}")
+        except ValueError:
+            print("Error decoding JSON response.")
+        
+        return None
 
-        # print(response)
-        return response
     
     def get_recordings(self):
         headers = {
