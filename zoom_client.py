@@ -53,7 +53,7 @@ class ZoomClient:
             data = response.json()
             
             if "meetings" in data:
-                return data["meetings"]
+                return data
             else:
                 print("Unexpected response format:", data)
                 return None
