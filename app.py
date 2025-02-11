@@ -28,8 +28,8 @@ app.secret_key = 'your_secret_key'
 # else:
 #     # Running locally, use a specific credentials file (e.g., key.json)
 
-cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
-# cred = credentials.ApplicationDefault()
+# cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
+cred = credentials.ApplicationDefault()
 
 # Initialize Firebase Admin SDK
 initialize_app(cred)
