@@ -11,28 +11,45 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <main>
-        <h2>Join a Live Lesson</h2>
+    <main  style="max-width: 1200px; margin: 0 auto;">
+      <!-- Live Meetings Section -->
+      {% for category, meetings in meetings.items() %}
+      <h2 class="category-title">
+        {% if category == 'live' %}
+          Live Meetings 🔴
+        {% elif category == 'today' %}
+          Today
+        {% elif category == 'tomorrow' %}
+          Tomorrow
+        {% else %}
+          {{ category }}
+        {% endif %}
+      </h2>
+
         <div class="grid">
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/88626872491?pwd=A3SbFwaSh1rDIbl3RIxHmLUPHb4jtC.1" target="_blank" class="live-btn">Join Grade 10 MathsLit Lesson</a>
-            </div>
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/85698563037?pwd=bYkob8RVsZzKsqcr2lFrnKOJLxubXm.1" target="_blank" class="live-btn">Join Grade 11 MathsLit Lesson</a>
-            </div>
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/81329059694?pwd=hB1AfCnDVmWUywwhxJjgljcHXUCOzW.1" target="_blank" class="live-btn">Join Grade 12 MathsLit Lesson</a>
-            </div>
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/88021789786?pwd=lFjCMUa4E9xfpQ9C5Uo528mk4MMU8C.1" target="_blank" class="live-btn">Join Grade 10 Maths Lesson</a>
-            </div>
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/87475253072?pwd=YsaXL1h2Oa8UV0t0ra5BbgzRQtf6s3.1" target="_blank" class="live-btn">Join Grade 11 MathsLit Lesson</a>
-            </div>
-            <div class="card">
-                <a href="https://us05web.zoom.us/j/87435320313?pwd=3J2JbeinG2qvXDYHoO82WAwyIYKVNI.1" target="_blank" class="live-btn">Join Grade 12 MathsLit Lesson</a>
-            </div>
+          {% if category == 'live' %}
+            {% for meeting in meetings %}
+              <div class="card live-meeting shadow-lg p-3 mb-3">
+                <h5 class="card-title">{{ meeting.title }}</h5>
+                <h6 class="card-subtitle text-muted">{{ meeting.day }}</h6>
+                <p class="text-success fw-bold">LIVE NOW!</p>
+                <p class="card-text">{{ meeting.time }}</p>
+                <a href="{{ url_for('get_meeting', meetingId=meeting.id) }}" class="btn btn-danger" target="_blank">Join Meeting</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for meeting in meetings %}
+              <div class="card upcoming-meeting shadow-lg p-3 mb-3">
+                <h5 class="card-title">{{ meeting.title }}</h5>
+                <h6 class="card-subtitle text-muted">{{ meeting.day }}</h6>
+                <p class="card-text">{{ meeting.time }}</p>
+                <a href="{{ url_for('get_meeting', meetingId=meeting.id) }}" class="btn btn-primary" target="_blank">Join Meeting</a>
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
+      {% endfor %}
+
     </main>
     <footer>
         &copy; 2025 E-MpiloLearning

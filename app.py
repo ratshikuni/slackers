@@ -1,15 +1,20 @@
 import base64
+import time
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
+import jwt
 from forms import TutorApplicationForm, ManagementApplicationForm
 from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
-import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app, firestore
 from datetime import datetime
 import os
 import pyrebase
+from zoom_client import ZoomClient
+from meeting_tools import handle_datetime, get_meeting_lists
+from collections import defaultdict
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -22,9 +27,9 @@ app.secret_key = 'your_secret_key'
 #     cred = credentials.ApplicationDefault()
 # else:
 #     # Running locally, use a specific credentials file (e.g., key.json)
-#     cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
 
-cred = credentials.ApplicationDefault()
+cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
+# cred = credentials.ApplicationDefault()
 
 # Initialize Firebase Admin SDK
 initialize_app(cred)
@@ -41,11 +46,18 @@ config = {
 }
 
 firebase = pyrebase.initialize_app(config)
-
-
 db = firestore.client()
 
 auth = firebase.auth()
+
+ZOOM_ACCOUNT_ID = os.environ.get('ZOOM_ACCOUNT_ID')
+ZOOM_CLIENT_ID = os.environ.get('ZOOM_CLIENT_ID')
+ZOOM_CLIENT_SECRET = os.environ.get('ZOOM_CLIENT_SECRET')
+ZOOM_SDK_ID = os.environ.get('ZOOM_SDK_ID')
+ZOOM_SDK_SECRET = os.environ.get('ZOOM_SDK_SECRET')
+client = ZoomClient(account_id=ZOOM_ACCOUNT_ID, client_id=ZOOM_CLIENT_ID, client_secret=ZOOM_CLIENT_SECRET, time_delta=90)
+
+
 
 @app.context_processor
 def inject_user():
@@ -53,14 +65,22 @@ def inject_user():
 
 @app.route('/')
 def index(): 
-    return render_template('index.html')
+
+    # if session.get("is_logged_in", False):
+    #     return render_template('home.html')  # Subject page
+    # return redirect(url_for('login'))
+    return render_template('home.html')  
+
 
 @app.route('/home')
 def home():
-    print("We are in home page")
-    if session.get("is_logged_in", False):
-        return render_template('home.html')  # Subject page
-    return redirect(url_for('login'))
+
+    # if session.get("is_logged_in", False):
+        
+    #     return render_template('home.html')  # Subject page
+    # return redirect(url_for('login'))
+    return render_template('home.html')  
+
 
 @app.route('/gallery')
 def gallery():
@@ -108,7 +128,7 @@ def tutoring_vacancies():
 @app.route('/apply_management', methods=['GET', 'POST'])
 def apply_management():
     role = request.args.get('role', '')  
-    print(role)
+    # print(role)
 
     form = ManagementApplicationForm()  # Create an instance of the form
     if session.get("is_logged_in", False):
@@ -122,7 +142,13 @@ def apply_management():
 @app.route('/live_lesson')
 def live_lesson():
     if session.get("is_logged_in", False):
-        return render_template('live-lesson.html')  
+
+        meets = client.get_meetings()
+        meetings_list =  get_meeting_lists(meets)
+        # print("we got this", meetings_list)
+
+
+        return render_template('live-lesson.html', meetings=meetings_list)  
     return redirect(url_for("login"))
 
 @app.route('/recorded_lesson')
@@ -131,77 +157,34 @@ def recorded_lesson():
         return render_template('recorded-lesson.html')  
     return redirect(url_for("login"))
 
-# @app.route('/logout')
-# def logout():
 
-#     # db.child("users").child(session["uid"]).update({"last_logged_out": datetime.now().strftime("%m/%d/%Y, %H:%M:%S")})
-#     print(session)
-#     session["is_logged_in"] = False
-#     return redirect(url_for('login'))
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     form = RegistrationForm()
-#     if request.method == 'POST':
-#         if form.is_submitted():
-#             email = form.email.data
-#             name = form.name.data
-#             surname = form.surname.data
-#             password = form.password.data
-#             user = auth.create_user(email=email, password=password)
-       
-        
-#             print(user)
-#             session["uid"] = user.uid
-#             session["name"] = name
-#             session["surname"] = surname
-#             session["email"] = email
-#             session["is_logged_in"] = True
-#             # Save user data
-#             data = {
-#                 "name": name,
-#                 "email": email,
-#                 "surname" : surname,
-#                 "last_logged_in": datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-#             }
-            
-#             # Create user account
-#             auth.create_user_with_email_and_password(email, password)
-#             # Authenticate user
-#             user = auth.sign_in_with_email_and_password(email, password)
-
-#             try : 
-#                 db.collection("users").document(session["uid"]).set(data)
- 
-#                 return redirect(url_for('home'))
-#             except Exception as e:
-#                 flash(f'Login successful!{e}', 'success')
-                
+def generate_signature(meeting_number):
+   # 30 seconds before current time
+    iat = int(time.time()) - 30  # Convert to SECONDS
+    exp = iat + (60 * 60 * 2)  
+    token_exp = exp + (60 * 60 * 1000)  # Token expiry (in mill
+    signature = jwt.encode(
+        headers={
+        "alg": "HS256",
+        "typ": "JWT"
+        },
+    payload={
+        'appKey': ZOOM_SDK_ID,
+        'mn': meeting_number,
+        'iat': iat,      # Issued at (SECONDS)
+        'exp': exp,      # Expiry (SECONDS)
+        'tokenExp': token_exp,  # Token Expiry (SECONDS)
+        "role": 0,
+    }, key=ZOOM_SDK_SECRET, algorithm='HS256')
 
 
-#     return render_template('register.html', form=form)
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#     if request.method == 'POST':
-#         if form.validate_on_submit():
-#             email = form.email.data
-#             password = form.password.data
+    return signature
 
 
-            
-#             try : 
-
-#             
-#                 flash('Login successful!', 'success')
-#                 return redirect(url_for('home'))
-#             except Exception as e:
-#                 flash(f'Login successful!{e}', 'success')
-                
-     
-
-#     return render_template('login.html', form=form)
+@app.route('/get_meeting/<int:meetingId>')
+def get_meeting(meetingId):
+    signature = generate_signature(meetingId)  # Role 0 for attendees
+    return render_template('zoom_meeting.html', meeting_id=meetingId, signature=signature, sdk_key=ZOOM_SDK_ID)
 
 # # Route for password reset
 # @app.route("/reset_password", methods=["GET", "POST"])
@@ -330,9 +313,10 @@ def logout():
     print("User logged out successfully.")
 
     # Redirect to login page after logout
-    return render_template("login.html", message="Logout successful")
+    # return render_template("login.html", message="Logout successful")
+    return  redirect(url_for('home'))
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8080, debug=True)
 

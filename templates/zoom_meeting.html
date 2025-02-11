@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Meeting</title>
+</head>
+<body>
+  <div id="zmmtg-root"></div>
+
+  <!-- Load Zoom SDK Dependencies -->
+  <script src="https://source.zoom.us/3.11.2/lib/vendor/react.min.js"></script>
+  <script src="https://source.zoom.us/3.11.2/lib/vendor/react-dom.min.js"></script>
+  <script src="https://source.zoom.us/3.11.2/lib/vendor/redux.min.js"></script>
+  <script src="https://source.zoom.us/3.11.2/lib/vendor/redux-thunk.min.js"></script>
+  <script src="https://source.zoom.us/3.11.2/lib/vendor/lodash.min.js"></script>
+
+  <!-- Zoom SDK -->
+  <script src="https://source.zoom.us/zoom-meeting-3.11.2.min.js"></script>
+
+  <!-- Pass variables dynamically from Flask -->
+  <script>
+    const meetingConfig = {
+      meetingId: "{{ meeting_id }}",
+      signature: "{{ signature }}",
+      sdkKey: "{{ sdk_key }}",
+      leaveUrl: "{{ url_for('index') }}",
+      userName: "{{ session.get('name', 'Guest') }}",
+      userEmail: "{{ session.get('email', 'email@example.com') }}"
+    };
+  </script>
+
+  <!-- Load external JavaScript from the js folder -->
+  <script src="{{ url_for('static', filename='js/zoom.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Flexbox meeting-Grid Layout */
+.meeting-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.meeting-grid > .item {
+  flex: 1 1 250px; /* Minimum width of 250px for items */
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  margin-bottom: 1rem; /* Add margin for vertical spacing */
+  margin-right: 1rem; /* Add margin for horizontal spacing */
+}
+
+/* Remove the right margin for the last item in each row */
+.meeting-grid > .item:nth-child(4n) {
+  margin-right: 0;
+}
+
+@media (max-width: 600px) {
+  .meeting-grid > .item {
+    flex: 1 1 200px; /* Minimum width of 200px for items on smaller screens */
+  }
+}
+
+/* Ensure no extra invisible element */
+.meeting-grid > .item:last-child {
+  margin-right: 0;
+}
+
+.card {
+  width: calc(33.33% - 20px);
+  max-width: 350px; /* Restrict max width for better layout on larger screens */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.live-meeting {
+  border-left: 5px solid #dc3545;
+  background: #ffecec;
+}
+
+.upcoming-meeting {
+  border-left: 5px solid #007bff;
+  background: #e7f1ff;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.card-text {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  /* transition: background 0.3s ease-in-out; */
+  width: 100%;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.category-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
