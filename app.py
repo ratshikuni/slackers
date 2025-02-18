@@ -1,4 +1,3 @@
-import base64
 import time
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
@@ -18,20 +17,15 @@ from collections import defaultdict
 from dotenv import load_dotenv
 load_dotenv()
 
-
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  
+app.secret_key = 'your_xsecret_key'
 
-# if os.getenv('K_SERVICE'):  # Check if the K_SERVICE environment variable is present
-#     # Running on Cloud Run, use Application Default Credentials (ADC)
-#     cred = credentials.ApplicationDefault()
-# else:
-#     # Running locally, use a specific credentials file (e.g., key.json)
 
-# cred = credentials.Certificate("key.json")  # Ensure key.json is not pushed to GitHub
-cred = credentials.ApplicationDefault()
+if os.getenv('ENVIRONMENT') == 'prod':
+    cred = credentials.ApplicationDefault()
+else:
+    cred = credentials.Certificate("key.json")  
 
-# Initialize Firebase Admin SDK
 initialize_app(cred)
 
 config = {
@@ -65,20 +59,11 @@ def inject_user():
 
 @app.route('/')
 def index(): 
-
-    # if session.get("is_logged_in", False):
-    #     return render_template('home.html')  # Subject page
-    # return redirect(url_for('login'))
     return render_template('home.html')  
 
 
 @app.route('/home')
 def home():
-
-    # if session.get("is_logged_in", False):
-        
-    #     return render_template('home.html')  # Subject page
-    # return redirect(url_for('login'))
     return render_template('home.html')  
 
 
@@ -142,11 +127,8 @@ def apply_management():
 @app.route('/live_lesson')
 def live_lesson():
     if session.get("is_logged_in", False):
-
-        meets = client.get_meetings()
-        meetings_list =  get_meeting_lists(meets)
-        # print("we got this", meetings_list)
-
+        resp_list = client.get_meetings()
+        meetings_list =  get_meeting_lists(resp_list)
 
         return render_template('live-lesson.html', meetings=meetings_list)  
     return redirect(url_for("login"))

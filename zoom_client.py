@@ -53,11 +53,11 @@ class ZoomClient:
             data = response.json()
             
             if "meetings" in data:
-                return data
+                return data['meetings']
             else:
                 print("Unexpected response format:", data)
-                return None
-
+                return []
+            
         except requests.exceptions.HTTPError as e:
             print(f"HTTP Error: {e}")
         except requests.exceptions.RequestException as e:

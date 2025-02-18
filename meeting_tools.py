@@ -14,7 +14,7 @@ def handle_datetime(date_string, duration):
     
     return date, meeting_duration, start_time_za, end_time
 
-def get_meeting_lists(meets):
+def get_meeting_lists(request_list):
     tz = pytz.timezone('Africa/Johannesburg')
     meetings_list = defaultdict(list)
 
@@ -22,7 +22,7 @@ def get_meeting_lists(meets):
     today = datetime.now(tz).date()
     tomorrow = today + timedelta(days=1)
 
-    for meeting in meets['meetings']:
+    for meeting in request_list:
         meeting_info = {}
         date, duration, start_time, end_time = handle_datetime(meeting['start_time'], meeting['duration'])
 
