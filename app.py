@@ -168,22 +168,6 @@ def get_meeting(meetingId):
     signature = generate_signature(meetingId)  # Role 0 for attendees
     return render_template('zoom_meeting.html', meeting_id=meetingId, signature=signature, sdk_key=ZOOM_SDK_ID)
 
-# # Route for password reset
-# @app.route("/reset_password", methods=["GET", "POST"])
-# def reset_password():
-#     if request.method == "POST":
-#         email = request.form["email"]
-#         try:
-            
-#             auth.send_password_reset_email(email)
-#             return render_template("reset_password_done.html") 
-#         except Exception as e:
-#             print("Error occurred: ", e)
-#             return render_template("reset_password.html", error="An error occurred. Please try again.")  
-#     else:
-#         return render_template("reset_password.html") 
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -231,6 +215,7 @@ def register():
         except Exception as e:
             return render_template("register.html", error=str(e))
     return render_template('register.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     
@@ -279,6 +264,22 @@ def login():
     
     return render_template('login.html')
 
+
+
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password():
+    if request.method == "POST":
+        email = request.form["email"]
+        try:
+            # Send password reset email
+            auth.send_password_reset_email(email)
+            return render_template("reset_password_done.html")  # Show a page telling user to check their email
+        except Exception as e:
+            print("Error occurred: ", e)
+            return render_template("reset_password.html", error="An error occurred. Please try again.")  # Show error on reset password page
+    else:
+        return render_template("reset_password.html")  # Show the password reset page
 
 @app.route('/logout')
 def logout():
