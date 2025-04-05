@@ -77,6 +77,7 @@ class ZoomClient:
 
         return requests.get(url, headers=headers).json()
     
+    
     def get_download_url(self, meeting_id):
         headers = {
             "Authorization": f"Bearer {self.access_token}"

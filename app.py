@@ -216,6 +216,7 @@ def register():
             return render_template("register.html", error=str(e))
     return render_template('register.html')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     
@@ -265,8 +266,6 @@ def login():
     return render_template('login.html')
 
 
-
-
 @app.route("/reset_password", methods=["GET", "POST"])
 def reset_password():
     if request.method == "POST":
@@ -280,6 +279,7 @@ def reset_password():
             return render_template("reset_password.html", error="An error occurred. Please try again.")  # Show error on reset password page
     else:
         return render_template("reset_password.html")  # Show the password reset page
+
 
 @app.route('/logout')
 def logout():
