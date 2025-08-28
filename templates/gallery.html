@@ -1,50 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-    <!-- Link to CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
-    <!-- Link to JavaScript -->
-    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
-   
-</head>
-<body>
-    {% include 'navbar.html' %}
+{% extends 'base.html' %}
 
-    <main>
-        <h2>Event Gallery</h2>
+{% block title %}Gallery - E-MpiloLearning{% endblock %}
 
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="Wits Tour 2024">
-                <p>Wits Tour 2024: An exciting educational tour to the University of the Witwatersrand, where students explored the campus and gained insights into university life.</p>
-            </div>
+{% block content %}
+<main>
+  <svg class="graffiti-bg" viewBox="0 0 800 600" style="position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.12;">
+    <path d="M100 500 Q400 100 700 500 T1300 500" stroke="#ff4081" stroke-width="40" fill="none" />
+    <circle cx="600" cy="200" r="60" fill="#7c4dff" opacity="0.4" />
+    <rect x="100" y="100" width="80" height="80" rx="18" fill="#00e5ff" opacity="0.4" />
+  </svg>
 
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="First Group of HA-Sci Learners">
-                <p>The First Group of HA-Sci Learners: The inaugural group of HA-Sci learners gathered at a tutor's home in Ratanda, as the school was unavailable for their use.</p>
-            </div>
+  <section class="post-form" style="max-width: 680px; margin: 40px auto; padding: 32px; background: #ffffff; border: 1px solid #e3e3e3; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);">
+    <h2 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; text-align: center; margin-bottom: 24px;">Start a New Thread</h2>
 
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/3.jpeg') }}" alt="Good Luck Session for Preliminary Exams">
-                <p>Good Luck Session for Preliminary Exams: A motivational session held for the 2024 matriculants to wish them good luck and provide encouragement before their preliminary exams.</p>
-            </div>
+  <form action="#" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 16px">
+      <input name="author" placeholder="Your @handle (optional)" style="padding: 12px 14px; font-size: 1rem; border: 1px solid #d1d5db; border-radius: 8px; outline: none; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#d1d5db'" />
 
-            <div class="gallery-item">
-                <img src="{{ url_for('static', filename='images/4.jpeg') }}" alt="Summer School 2024 Induction Ceremony">
-                <p>Summer School 2024 Induction Ceremony: The induction ceremony for the 2024 matriculants, marking the beginning of their summer school program.</p>
-            </div>
-        </div>
+      <textarea name="summary" placeholder="Share your learning experience..." rows="5" style="padding: 14px; font-size: 1rem; border: 1px solid #d1d5db; border-radius: 8px; resize: vertical; outline: none; transition: border-color 0.2s ease;" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#d1d5db'"></textarea>
 
-    </main>
+      <label style="font-size: 0.95rem; color: #4b5563">📷 Optional image</label>
+      <input type="file" name="image" accept="image/*" style="padding: 8px 0; font-size: 0.95rem; border: none; background: none; color: #374151;" />
 
-    <footer>
-        <p>&copy; 2025 E-MpiloLearning</p>
-    </footer>
-</body>
-</html>
+      <button type="submit" style="background-color: #2563eb; color: white; border: none; padding: 12px 0; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#1e40af'" onmouseout="this.style.backgroundColor='#2563eb'">Post Thread</button>
+    </form>
+  </section>
+
+  <section class="gallery-section" style="max-width: 720px; margin: 40px auto; padding: 0 20px">
+    {% for event in events %}
+    <div class="gallery-thread" style="background: white; border: 1px solid #ccc; border-radius: 16px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);">
+      <div style="font-weight: 600; font-size: 1rem; color: #1da1f2">@{{ event.author or 'student' }}</div>
+      <div style="font-size: 0.88rem; color: #666">{{ event.date }}</div>
+      <div style="margin-top: 12px; font-size: 1rem; color: #333">{{ event.summary }}</div>
+      {% if event.image_url %}
+      <img src="{{ event.image_url }}" alt="event" style="margin-top: 16px; width: 100%; border-radius: 12px" />
+      {% endif %}
+      <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa">🔥 💯 🎶</div>
+    </div>
+    {% endfor %}
+  </section>
+</main>
+{% endblock %}
+
+{% block scripts %}{% endblock %}

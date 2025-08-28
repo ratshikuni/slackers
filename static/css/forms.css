@@ -1,64 +1,73 @@
 /* forms.css */
+
+/* --- General Form Container --- */
 .form-container {
-    max-width: 600px;
+    max-width: 450px; /* Slightly smaller width for a more focused look */
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 2.5rem; /* Increased padding */
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* Smoother corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Stronger, more modern shadow */
+}
+
+/* --- Form Heading and Spacing --- */
+.form-heading {
+    text-align: center;
+    font-size: 2rem; /* h2 equivalent */
+    font-weight: 700; /* bold */
+    color: #333;
+    margin-bottom: 2rem; /* Increased space below heading */
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Better vertical spacing between fields */
+    position: relative; /* Required for absolute positioning of icons/buttons */
 }
 
 label {
     display: block;
     margin-bottom: 0.5rem;
+    font-weight: 600; /* Bolder labels for better readability */
+    color: #555;
 }
 
+/* --- Form Controls (Inputs) --- */
 .form-control {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.75rem 1rem; /* Increased padding inside inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Smoother corners on inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
 }
 
-@media (max-width: 400px) {
-    .form-container {
-        padding: 1rem;
-    }
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
 }
 
-/* Styling for error messages (if you use them) */
-.errors {
-    list-style: none;
-    padding: 0;
-    margin-top: 0.5rem;
-    color: red;
-    font-size: smaller;
-}
-/* Center only the button inside the form */
+/* --- The Main Button --- */
 .form-btn {
     display: block;
     background-color: #007bff;
     border: none;
     color: white;
-    width: 80%;
-    max-width: 300px;
-    padding: 0.75rem;
-    margin: 1.5rem auto 0; /* More spacing above */
+    width: 100%; /* Full width for a more modern, stacked look */
+    padding: 1rem; /* Larger padding for a more clickable area */
+    margin: 2rem auto 0; /* More spacing above */
     text-align: center;
-    font-size: 18px;
+    font-size: 1.1rem; /* Slightly larger font */
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-btn:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
+    transform: translateY(-2px); /* Subtle lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .form-btn:active {
@@ -66,6 +75,106 @@ label {
     transform: scale(0.98);
 }
 
-.form-group {
-    margin-bottom: 1.2rem; /* Better spacing between fields */
+/* --- Feedback and Validation --- */
+.feedback-message {
+    margin-top: 0.5rem;
+    font-size: 0.85em;
+    height: 1.2em;
+    color: #e74c3c;
+    font-weight: 400; /* Not bold for errors */
 }
+
+.form-group.invalid .form-control {
+    border-color: #e74c3c;
+}
+
+.form-group.valid .form-control {
+    border-color: #2ecc71;
+}
+
+.form-group.valid .feedback-message {
+    color: #2ecc71;
+}
+
+/* --- Password Toggle & Input Container --- */
+.password-input-container {
+    position: relative;
+}
+
+.password-input-container .form-control {
+    padding-right: 4rem; /* Make room for the button */
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 0.75rem; /* Position inside the input field */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: #333;
+}
+
+/* --- Links and Utility Text --- */
+.links-container {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.links-container p, .links-container a {
+    margin: 0;
+}
+
+.forgot-password, .sign-up-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover, .sign-up-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* --- Other styles (from previous code) --- */
+.toast-container {
+    margin-bottom: 1.5rem;
+}
+
+.alert-success, .alert-error {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #e6f7ea;
+    color: #1a5e37;
+    border: 1px solid #3c9c64;
+}
+
+.alert-error {
+    background-color: #fbeded;
+    color: #8d2e2e;
+    border: 1px solid #e74c3c;
+}
+
+/* Alpine.js Transition Classes */
+.toast-transition-enter { transition: all 0.3s ease-out; }
+.toast-transition-enter-start { opacity: 0; transform: scale(0.9); }
+.toast-transition-enter-end { opacity: 1; transform: scale(1); }
+.toast-transition-leave { transition: all 0.3s ease-in; }
+.toast-transition-leave-start { opacity: 1; transform: scale(1); }
+.toast-transition-leave-end { opacity: 0; transform: scale(0.9); }

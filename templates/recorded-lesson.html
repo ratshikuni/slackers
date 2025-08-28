@@ -1,98 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recorded Lessons</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/recorded-lesson.css') }}">
-</head>
-<body>
-    {% include 'navbar.html' %}
-    <main>
-        <h1>Recorded Lessons</h1>
-        <div class="grid-container">
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Accounting Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Afrikaans First Additional Language Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Agricultural Management Practices Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Agricultural Sciences Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Agricultural Technology Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Business Studies Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Computer Applications Technology Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Consumer Studies Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Dance Studies Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Design Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Dramatic Arts Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Economics Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Engineering Graphics and Design Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">English Home Language Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Geography Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">History Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Hospitality Studies Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Information Technology Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">IsiZulu Home Language Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Life Orientation Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Life Sciences Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Mathematics Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Music Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Physical Sciences Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Tourism Lesson</a>
-            </div>
-            <div class="grid-item">
-                <a href="https://www.zoom.com/">Visual Arts Lesson</a>
-            </div>
-        </div>
-    </main>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Recorded Lessons - E-MpiloLearning{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recorded-lesson.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Recorded Lessons</h1>
+    <div class="grid-container">
+        <div class="grid-item"><a href="https://www.zoom.com/">Accounting Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Afrikaans First Additional Language Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Agricultural Management Practices Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Agricultural Sciences Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Agricultural Technology Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Business Studies Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Computer Applications Technology Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Consumer Studies Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Dance Studies Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Design Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Dramatic Arts Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Economics Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Engineering Graphics and Design Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">English Home Language Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Geography Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">History Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Hospitality Studies Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Information Technology Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">IsiZulu Home Language Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Life Orientation Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Life Sciences Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Mathematics Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Music Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Physical Sciences Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Tourism Lesson</a></div>
+        <div class="grid-item"><a href="https://www.zoom.com/">Visual Arts Lesson</a></div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
