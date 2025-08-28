@@ -1,48 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Subject - HA-Sci</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/grid.css') }}">
-</head>
-<body>
-    {% include 'navbar.html' %}
-    <main>
-        <h2>Subjects</h2>
-        <div class="grid">
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Accounting</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Afrikaans First Additional Language</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Management Practices</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Sciences</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Technology</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Business Studies</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Computer Applications Technology</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Consumer Studies</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dance Studies</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Design</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dramatic Arts</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Economics</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Engineering Graphics and Design</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">English Home Language</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Geography</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">History</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Hospitality Studies</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Information Technology</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">IsiZulu Home Language</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Orientation</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Sciences</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Mathematics</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Music</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Physical Sciences</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Tourism</a></div>
-            <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Visual Arts</a></div>
-        </div>
-    </main>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Subjects - E-MpiloLearning{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/grid.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h2>Subjects</h2>
+    <div class="grid">
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Accounting</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Afrikaans First Additional Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Management Practices</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Agricultural Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Business Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Computer Applications Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Consumer Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dance Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Design</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Dramatic Arts</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Economics</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Engineering Graphics and Design</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">English Home Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Geography</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">History</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Hospitality Studies</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Information Technology</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">IsiZulu Home Language</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Orientation</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Life Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Mathematics</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Music</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Physical Sciences</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Tourism</a></div>
+        <div class="grid-item"><a href="{{ url_for('live_lesson') }}">Visual Arts</a></div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
 
 

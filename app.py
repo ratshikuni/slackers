@@ -4,9 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 import jwt
 from forms import TutorApplicationForm, ManagementApplicationForm
-from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
-from firebase_admin import credentials, firestore, initialize_app, firestore
+from firebase_admin import credentials, initialize_app, firestore
 from datetime import datetime
 import os
 import pyrebase
@@ -126,12 +125,12 @@ def apply_management():
 
 @app.route('/live_lesson')
 def live_lesson():
-    if session.get("is_logged_in", False):
-        resp_list = client.get_meetings()
-        meetings_list =  get_meeting_lists(resp_list)
+    if not session.get("is_logged_in", False):
+        return redirect(url_for("login"))
 
-        return render_template('live-lesson.html', meetings=meetings_list)  
-    return redirect(url_for("login"))
+    resp_list = client.get_meetings()
+    meetings_list = get_meeting_lists(resp_list)
+    return render_template('live_lesson.html', meetings=meetings_list)
 
 @app.route('/recorded_lesson')
 def recorded_lesson():
@@ -167,22 +166,6 @@ def generate_signature(meeting_number):
 def get_meeting(meetingId):
     signature = generate_signature(meetingId)  # Role 0 for attendees
     return render_template('zoom_meeting.html', meeting_id=meetingId, signature=signature, sdk_key=ZOOM_SDK_ID)
-
-# # Route for password reset
-# @app.route("/reset_password", methods=["GET", "POST"])
-# def reset_password():
-#     if request.method == "POST":
-#         email = request.form["email"]
-#         try:
-            
-#             auth.send_password_reset_email(email)
-#             return render_template("reset_password_done.html") 
-#         except Exception as e:
-#             print("Error occurred: ", e)
-#             return render_template("reset_password.html", error="An error occurred. Please try again.")  
-#     else:
-#         return render_template("reset_password.html") 
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -231,6 +214,8 @@ def register():
         except Exception as e:
             return render_template("register.html", error=str(e))
     return render_template('register.html')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     
@@ -279,6 +264,56 @@ def login():
     
     return render_template('login.html')
 
+
+@app.route("/forgot", methods=["GET", "POST"])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        if not email:
+            return render_template('forgot.html', error='Please enter your email.')
+        try:
+            auth.send_password_reset_email(email)
+            return render_template('login.html')
+        except Exception as e:
+            print('Error generating reset link:', e)
+            return render_template('forgot.html', error='Could not send reset email.')
+    return render_template('forgot.html')
+
+
+@app.route('/reset-password', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == 'GET':
+        return render_template('reset_password.html', oobCode=request.args.get('oobCode'))
+    oob_code = request.form.get('oobCode') or request.args.get('oobCode')
+    if not oob_code:
+        return render_template('reset_password.html', oobCode=oob_code, error='Invalid or missing code.')
+    new_password = request.form.get('password')
+    if not new_password:
+        return render_template('reset_password.html', oobCode=oob_code, error='Password required')
+    try:
+        print("resetting")
+        import requests
+        api_key = os.getenv('FIREBASE_API_KEY')
+        verify_resp = requests.post(
+            f"https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key={api_key}",
+            json={'oobCode': oob_code}
+        ).json()
+        if 'email' not in verify_resp:
+            return render_template('reset_password.html', oobCode=oob_code, error='Invalid or expired link.')
+        
+        confirm_resp = requests.post(
+            f"https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key={api_key}",
+            json={'oobCode': oob_code, 'newPassword': new_password}
+        ).json()
+
+        if 'error' in confirm_resp:
+            print("resetting error")
+            return render_template('reset_password.html', oobCode=oob_code, error='Failed to reset password.')
+        print("resetting success")
+        return render_template('login.html', message='Password updated successfully!')
+    except Exception as e:
+        print('Error:', e)
+        return render_template('reset_password.html', oobCode=oob_code, error='Server error.')
 
 @app.route('/logout')
 def logout():

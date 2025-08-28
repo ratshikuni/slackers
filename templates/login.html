@@ -1,57 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In - E-MpiloLearning</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
-    
-  </head>
-  <body>
-    {% include 'navbar.html' %}
+{% extends 'base.html' %}
 
-    <div class="form-container">
-      <h2>Sign In</h2>
-      <form method="POST" action="/login">
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          class="form-control"
-          size="20"
-          required
-        />
+{% block title %}Sign In - E-MpiloLearning{% endblock %}
 
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="form-control"
-          size="20"
-          required
-        />
-        <button type="submit" class="form-btn">Sign In</button>
+{% block content %}
+<div class="form-container">
+  <h2>Sign In</h2>
+  <form method="POST" action="{{ url_for('login') }}">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" class="form-control" size="20" required />
 
-      </form>
-   
-      <p class="mt-3">
-        Don't have an account? <a href="/register">Sign up here</a>
-      </p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" class="form-control" size="20" required />
+    <button type="button" onclick="togglePassword('password')">Show/Hide</button>
+    <button type="submit" class="form-btn">Sign In</button>
+  </form>
+  <p class="mt-3"><a href="/forgot">Forgot Password?</a></p>
+  <p class="mt-3">Don't have an account? <a href="/register">Sign up here</a></p>
 
-      {% if error %}
-      <p style="color: red">{{ error }}</p>
-      {% endif %} {% if message %}
-      <p style="color: green">{{ message }}</p>
-      {% endif %}
-    </div>
+  {% if error %}<p style="color: red">{{ error }}</p>{% endif %}
+  {% if message %}<p style="color: green">{{ message }}</p>{% endif %}
+</div>
+{% endblock %}
 
-    <footer>
-      <p>&copy; 2025 E-MpiloLearning</p>
-    </footer>
-  </body>
-</html>
+{% block scripts %}
+<script>
+  function togglePassword(fieldId) {
+      const field = document.getElementById(fieldId);
+      field.type = field.type === 'password' ? 'text' : 'password';
+  }
+</script>
+{% endblock %}

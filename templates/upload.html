@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Lessons</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-</head>
-<body>
-    {% include 'navbar.html' %}
-    <h1>Upload Recorded Lessons</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <label for="file">Select File:</label>
-        <input type="file" id="file" name="file" required>
-        <button type="submit">Upload</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Upload Lessons - E-MpiloLearning{% endblock %}
+
+{% block content %}
+<h1>Upload Recorded Lessons</h1>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="file">Select File:</label>
+    <input type="file" id="file" name="file" required>
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
 

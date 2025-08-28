@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-MpiloLearning Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/typography.css') }}">
-</head>
-<body>
-    {% include 'navbar.html' %}
+{% extends 'base.html' %}
 
-    <main>
-        <h2>Welcome to the E-MpiloLearning platform! Here you can sign up or sign in to get started.</h2>
-    </main>
+{% block title %}E-MpiloLearning Home{% endblock %}
 
-    <footer>
-        <p>&copy; 2025 E-MpiloLearning</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+<main>
+    <h2>Welcome to the E-MpiloLearning platform! Here you can sign up or sign in to get started.</h2>
+</main>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
